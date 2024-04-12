@@ -1,42 +1,47 @@
 #include "sort.h"
 
 /**
- * insertion_sort_list - fonction qui trie une liste doublement chaînée d'entiers
- * dans l'ordre croissant en utilisant l'algorithme de tri par insertion
+ * insertion_sort_list - Trie une liste doublement
+ * chaînée d'entiers dans l'ordre
+ * croissant en utilisant l'algorithme de tri par insertion.
  *
- * @list : un pointeur sur la tête d'une liste double
-*/
-
+ * @list: pointeur sur un pointeur vers la tête de la liste chaînée.
+ */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *current, *temp, *prev;
+	listint_t *element_courant = NULL,
+			  *element_a_inserer = NULL,
+			  *element_suivant = NULL;
 
-	if (list == NULL || *list == NULL || (*list)->next == NULL)
-	{
+	if (list == NULL || (*list)->next == NULL)
 		return;
-	}
-	current = (*list)->next;
 
-	while (current != NULL)
+	element_a_inserer = (*list)->next;
+	while (element_a_inserer != NULL)
 	{
-		temp = current->next;
-		prev = current->prev;
-		while (prev != NULL && prev->n > current->n)
-		{
-			prev->next = current->next;
-			if (current->next != NULL)
-				current->next->prev = prev;
-			current->next = prev;
-			current->prev = prev->prev;
-			prev->prev = current;
-			if (current->prev != NULL)
-				current->prev->next = current;
-			else
-				*list = current;
-			prev = current->prev;
-			print_list(*list);
-		}
+		element_suivant = element_a_inserer->next;
+		element_courant = element_a_inserer->prev;
 
-		current = temp;
+		while (element_courant != NULL && element_courant->n > element_a_inserer->n)
+		{
+			if (element_courant->prev != NULL)
+				element_courant->prev->next = element_a_inserer;
+
+			if (element_a_inserer->next != NULL)
+				element_a_inserer->next->prev = element_courant;
+
+			element_courant->next = element_a_inserer->next;
+			element_a_inserer->prev = element_courant->prev;
+			element_courant->prev = element_a_inserer;
+			element_a_inserer->next = element_courant;
+
+			if (*list == element_courant)
+				*list = element_a_inserer;
+
+			print_list(*list);
+
+			element_courant = element_a_inserer->prev;
+		}
+		element_a_inserer = element_suivant;
 	}
 }

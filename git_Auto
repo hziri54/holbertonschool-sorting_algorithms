@@ -21,11 +21,11 @@ else
 fi
 
 # Demander à l'utilisateur de saisir le commentaire du commit
-echo "Entrez le commentaire de mise à jour du commit :"
+echo "Completez le commentaire de mise à jour du commit:C - Sorting algorithms & Big O tasks :"
 read comment
 
 # Effectuer le commit et le push avec le commentaire spécifié
-git commit -m "$comment"
+git commit -m "C - Sorting algorithms & Big O tasks $comment"
 git push
 
 # Mets le texte en gras et change la couleur
@@ -33,7 +33,8 @@ tput bold
 tput setaf 2 # Définir la couleur en vert
 
 # Afficher le message approprié en fonction de ce qui a été ajouté
-echo "$added_message mis à jour sur ton GIT-HUB avec le commentaire \"$comment\""
+echo "$added_message mis à jour sur ton GIT-HUB avec le commentaire:"
+echo " \"C - Sorting algorithms & Big O tasks :$comment\""
 
 # Rétablir la taille du texte et la couleur par défaut
 tput sgr0

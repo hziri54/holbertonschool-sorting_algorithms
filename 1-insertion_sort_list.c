@@ -1,11 +1,10 @@
 #include "sort.h"
 
-/**
- * insertion_sort_list fonction qui trie une liste doublement chaînée d'entie
- * dans l'ordre croissant en utilisant l'algorithme de tri par insertion
- *
- * @list : un pointeur sur la tête d'une liste double
-*/
+/*
+ * insertion_sort_list - Trie une liste doublement chaînée d'entiers dans l'ordre croissant
+ * @list: Un pointeur sur la tête d'une liste double
+ */
+
 
 void insertion_sort_list(listint_t **list)
 {
